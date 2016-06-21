@@ -55,18 +55,12 @@ function start() {
 			res.writeHead(200, {'Content-Type': 'image/x-icon'} );
 			res.end(/* icon content here */);
 		} else {
-			var rootRefOnly = false;
-			if(req.body){
-				rootRefOnly = req.body.legalVersions;
-			}
 			//set the user token
 			var clientToken = req.baseUrl.split('/')[1];
 			app.set('token', clientToken);
 			app.set('AUTH_TOKEN', AUTH_TOKEN);
-			if( clientToken != 'appOnly'){
-				require("./endpoints")(router, utils);
-				next();
-			}
+			require("./endpoints")(router, utils);
+			next();
 		}
 	});
 
