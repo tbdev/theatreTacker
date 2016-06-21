@@ -14,10 +14,10 @@ module.exports = function(router, utils) {
 		.post(function(req,res){
 			var token = req.app.get('token');
 			var AUTH_TOKEN = req.app.get('AUTH_TOKEN');
-			console.log( token );
-			console.log('req.body', req.body );
-
-			utils.firebase_Push( token, '/inputs/', AUTH_TOKEN).then(
+			var data = {
+				user: req.body.KEY;
+			}
+			utils.firebase_Push( token, '/inputs/', AUTH_TOKEN, data).then(
 				function(good){
 					utils.sendResponse(req,res,'GOOD', true,false);
 				},function(bad){

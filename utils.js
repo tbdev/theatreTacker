@@ -77,42 +77,39 @@ exports.firebase_Push = function(token,url,authToken,data ){
 	var d = deferred();
 	var https = require('https');
 
-	// form data
-	var postData = {
-		user: 'simple',
-		customer: 'test',
-		date: (new Date()).getTime()
-	};
-
-	console.log( postData );
-
-	// request option
-	var options = {
-		host: 'theatretracker.firebaseio.com',
-		port: 443,
-		path: '/customers/'+token+'/data'+url+".json?auth="+authToken,
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json',
-		}
-	};
-
-	var req = https.request(options, function(res) {
-		console.log('Status: ' + res.statusCode);
-		console.log('Headers: ' + JSON.stringify(res.headers));
-		res.setEncoding('utf8');
-		res.on('data', function (body) {
-			console.log('Body: ' + body);
-			d.resolve();
-		});
-	});
-	req.on('error', function(e) {
-		console.log('problem with request: ' + e.message);
+	if( typeof data == 'undefined'){
 		d.reject();
-	});
-	// write data to request body
-	req.write( JSON.stringify(postData) );
-	req.end();
+	} else {
+
+		data.lastModified = (new Date()).getTime();
+		// request option
+		var options = {
+			host: 'theatretracker.firebaseio.com',
+			port: 443,
+			path: '/customers/'+token+'/data'+url+".json?auth="+authToken,
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			}
+		};
+
+		var req = https.request(options, function(res) {
+			console.log('Status: ' + res.statusCode);
+			console.log('Headers: ' + JSON.stringify(res.headers));
+			res.setEncoding('utf8');
+			res.on('data', function (body) {
+				console.log('Body: ' + body);
+				d.resolve();
+			});
+		});
+		req.on('error', function(e) {
+			console.log('problem with request: ' + e.message);
+			d.reject();
+		});
+		// write data to request body
+		req.write( JSON.stringify(data) );
+		req.end();
+	}
 
 	return d.promise;
 };
