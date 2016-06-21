@@ -1,0 +1,46 @@
+{
+  "author": "TNT Entertainment LLC",
+  "name": "Processor-API",
+  "version": "0.0.1",
+  "homepage": "theatretracker.herokuapp.com",
+  "licenses": {
+    "type": "Commercial",
+    "url": "theatretracker.herokuapp.com"
+  },  
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tbdev/theatreTacker.git"
+  },
+  "dependencies": {
+    "express": "4.11.2",
+    "throng": "1.0.0",
+    "js2xmlparser": "*",
+    "ejs": "*",
+    "less-middleware": "*",
+    "request": "*",
+    "permcomb": "*",
+    "async": "*",
+    "deferred": "0.7.1",
+    "lodash": "^2.4.1",
+    "xml2js": "^0.4.4",
+    "body-parser": "*",
+    "json2xml": "*",
+    "json2csv": "3.4.2",
+    "util": "0.10.3",
+    "path": "0.11.14",
+    "simple-node-logger": "0.92.21",
+    "deepcopy": "0.5.0",
+    "colors": "1.1.2",
+    "compression":"1.6.1",
+    "querystring":"0.2.0"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": "4.2.1",
+    "npm": "2.14.7"
+  },
+  "private": true,  
+  "devDependencies": {}
+}
