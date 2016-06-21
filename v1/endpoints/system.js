@@ -13,8 +13,9 @@ module.exports = function(router, utils) {
 	router.route('/v1/system/check')
 		.get(function(req,res){
 			var token = req.app.get('token');
+			var AUTH_TOKEN = req.app.get('AUTH_TOKEN');
 			console.log( token );
-			utils.firebase_Push( token, '/inputs/').then(
+			utils.firebase_Push( token, '/inputs/', AUTH_TOKEN).then(
 				function(good){
 					utils.sendResponse(req,res,'GOOD', true,false);
 				},function(bad){

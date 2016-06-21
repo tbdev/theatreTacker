@@ -73,7 +73,7 @@ exports.RESTFirebase = function(token,url,path, shallow){
 
 };
 
-exports.firebase_Push = function(token,url,data ){
+exports.firebase_Push = function(token,url,authToken,data ){
 	var d = deferred();
 	var https = require('https');
 
@@ -90,7 +90,7 @@ exports.firebase_Push = function(token,url,data ){
 	var options = {
 		host: 'theatretracker.firebaseio.com',
 		port: 443,
-		path: '/customers/'+token+'/data'+url+".json",
+		path: '/customers/'+token+'/data'+url+".json?auth="+authToken,
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',

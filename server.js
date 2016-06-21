@@ -1,4 +1,11 @@
 var throng = require('throng');
+if (process.env.hasOwnProperty("TT_AUTH_TOKEN")) {
+	AUTH_TOKEN = process.env.TT_AUTH_TOKEN;
+} else {
+	//console.log("Firebase Token Not Configured in Environment. Terminating process.");
+	process.exit(1);
+}
+
 //console.log('WEB_CONCURRENCY ', process.env.WEB_CONCURRENCY);
 //var WORKERS = process.env.WEB_CONCURRENCY || 1;
 var WORKERS = 5; // hard code the number of workers
@@ -54,7 +61,8 @@ function start() {
 			}
 			//set the user token
 			var clientToken = req.baseUrl.split('/')[1];
-			app.set('token', clientToken)
+			app.set('token', clientToken);
+			app.set('AUTH_TOKEN', AUTH_TOKEN);
 			if( clientToken != 'appOnly'){
 				require("./endpoints")(router, utils);
 				next();
