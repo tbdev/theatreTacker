@@ -15,7 +15,7 @@ module.exports = function(router, utils) {
 			var token = req.app.get('token');
 			var AUTH_TOKEN = req.app.get('AUTH_TOKEN');
 			var data = {
-				user: req.body.KEY;
+				user: req.body.KEY
 			}
 			utils.firebase_Push( token, '/inputs/', AUTH_TOKEN, data).then(
 				function(good){
