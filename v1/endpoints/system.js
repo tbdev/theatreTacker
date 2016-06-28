@@ -14,6 +14,7 @@ module.exports = function(router, utils) {
 		.post(function(req,res){
 			var token = req.app.get('token');
 			var AUTH_TOKEN = req.app.get('AUTH_TOKEN');
+			var dataToLoad = JSON.parse(req.body);
 			var data = {
 				user: req.body.KEY
 			}
