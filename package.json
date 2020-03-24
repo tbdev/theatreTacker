@@ -21,7 +21,7 @@
     "permcomb": "*",
     "async": "*",
     "deferred": "0.7.1",
-    "lodash": "^2.4.1",
+    "lodash": "^4.17.15",
     "xml2js": "^0.4.4",
     "body-parser": "*",
     "json2xml": "*",
